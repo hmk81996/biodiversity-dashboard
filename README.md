@@ -14,9 +14,11 @@ I will first build a function that displays a panel of demographic data for each
 Next, I will develop a function that builds a bubble chart and a bar chart for any subject The charts will include hovertext that displays specific culture labels as hovertext.
 
 The bubble chart shows the number of bacteria per sample. For each culture, the hover text displays the culture names and count.
+
 ![Bubble chart](images/bubblechart_hovertext.png)
 
 The bar chart shows the top 10 cultures found for each subject ID. For each culture, the hover text displays the culture names and count.
+
 ![Bar chart](images/barchart_hovertext.png)
 
 The third function will initialize the page loading and building charts with the first sample in the list of subject IDs. 
