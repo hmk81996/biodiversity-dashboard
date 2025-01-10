@@ -34,7 +34,6 @@ function buildCharts(sample) {
     const samples = data.samples;
 
     // Filter the samples for the object with the desired sample number
-    // 
     const result = samples.filter(sampleObj => sampleObj.id == sample)[0];
 
     // Get the otu_ids, otu_labels, and sample_values
@@ -68,35 +67,47 @@ function buildCharts(sample) {
     Plotly.newPlot("bubble", data1, layout1);
 
     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
-    let otuIdsString = otuIds.map(otu_ids => otu_ids.toString());
+    // let otuIdsString = otuIds.map(otuIds => otuIds.toString());
+    // Is this necessary?
 
     // Build a Bar Chart
     // Don't forget to slice and reverse the input data appropriately
     // Xpert Assistant made some corrections to my initital attempts
     
-    let topTen = otuIdsString.map((index) => index).slice(0,10);
-    let topTenSorted = topTen
-      .sort((firstNum, secondNum) => sampleValues[firstNum]-sampleValues[secondNum]);
+    // Create an array of objects to hold the values and their corresponding IDs and labels
+    // Xpert Assistant suggestion
+    let dataArray = otuIds.map((id, index) => ({
+      id: id,
+      value: sampleValues[index],
+      label: otuLabels[index]
+    }));
 
+    // Sort the data array by sample values in descending order
+    dataArray.sort((a, b) => b.value - a.value);
+
+    // Slice the top 10 entries
+    let topTenSliced = dataArray.slice(0, 10);
+    topTenSliced.reverse();
+
+    // Prepare the data for the bar chart
     let trace2 = {
-      x: topTenSorted.map(index => sampleValues[index]),
-      // not listing otu_ids correctly
-      y: topTenSorted.map(topTenSorted => `OTU ${topTenSorted}`),
-      text: topTenSorted.map(index => otuLabels[index]),
+      x: topTenSliced.map(item => item.value), // use sample_values as the values
+      y: topTenSliced.map(item => `OTU ${item.id}`), // use otu_ids as the labels
+      text: topTenSliced.map(item => item.label), // use otu_labels as the hovertext
       orientation: 'h',
       type: 'bar',
       hovertemplate: '<b>%{text}</b> : %{x} <extra></extra>'
-      };
-   
+    };
+
     let data2 = [trace2];
 
     let layout2 = {
       title: `Top 10 Bacteria Cultures Found`,
-      xaxis: {title: 'Number of Bacteria'},
+      xaxis: { title: 'Number of Bacteria' },
       showlegend: false
     };
 
-    // Render the Bar Chart in bar div
+    // Render the Bar Chart in the div with id "bar"
     Plotly.newPlot("bar", data2, layout2);
   });
 }
