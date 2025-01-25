@@ -11,7 +11,7 @@ I will first build a function that displays a panel of demographic data for each
 
 ![Demographic data panel](images/panel.png)
 
-Next, I will develop a function that builds a bubble chart and a bar chart for any subject The charts will include hovertext that displays specific culture labels as hovertext.
+Next, I will develop a function that builds a bubble chart and a bar chart for each user-selected subject. The charts will include hovertext that displays specific culture labels as hovertext.
 
 The bubble chart shows the number of bacteria per sample. For each culture, the hover text displays the culture names and count.
 
