@@ -1,8 +1,8 @@
-# javascript-visualization-challenge
-Data Analytics Course Module 14
+# Biodiversity-Dataset-Visualization
+JavaScript Visualization - Data Analytics Course Module 14
 
 # Task
-Using a Belly Button Biodviersity dataset (which catalogs the microbes that colonize human navels), I will build an interactive dashboard. 
+Using a Belly Button Biodiversity dataset (which catalogs the microbes that colonize human navels), I will build an interactive dashboard. 
 
 # Methodology
 Using starter index.html as well as a an app.js file, I will use JavaScripta and the D3 library to edit the HTML site and D3.json to fetch data.
